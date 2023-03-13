@@ -41,9 +41,9 @@ git branch -M main
 					]
 				};
 				this.pc = new RTCPeerConnection(turn_config);
-				this.pc.addEventListener("icegatheringstatechange", () => {
-					console.log("Peer state => ", this.pc.iceGatheringState);
-				});
+				this.pc.oniceconnectionstatechange = () => {
+					console.log(`ICE connection state changed to ${this.pc.iceConnectionState}`);
+				};
 
 				// Sending the answerer's ICE candidates to the offerer
 				const icesref = doc(firestore, "answer", "ices");
