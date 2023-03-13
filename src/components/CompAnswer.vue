@@ -41,7 +41,7 @@ git branch -M main
 					]
 				};
 				this.pc = new RTCPeerConnection(turn_config);
-				this.pc.addEventListener("icegatheringstatechange", (e) => {
+				this.pc.addEventListener("icegatheringstatechange", () => {
 					console.log("Peer state => ", pc.iceGatheringState);
 				});
 
