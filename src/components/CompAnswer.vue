@@ -1,3 +1,4 @@
+git branch -M main
 <template>
 	<div>
 		<button @click="answer">Answer</button>
@@ -15,7 +16,34 @@
 		},
 		methods: {
 			async answer() {
-				this.pc = new RTCPeerConnection();
+				// TURN servers
+
+				const turn_config = {
+					iceServers: [
+						{
+							urls: "stun:relay.metered.ca:80"
+						},
+						{
+							urls: "turn:relay.metered.ca:80",
+							username: "7c6e2dfc7ba5dd33578fc9e1",
+							credential: "18GkZDVEKpCweYAf"
+						},
+						{
+							urls: "turn:relay.metered.ca:443",
+							username: "7c6e2dfc7ba5dd33578fc9e1",
+							credential: "18GkZDVEKpCweYAf"
+						},
+						{
+							urls: "turn:relay.metered.ca:443?transport=tcp",
+							username: "7c6e2dfc7ba5dd33578fc9e1",
+							credential: "18GkZDVEKpCweYAf"
+						}
+					]
+				};
+				this.pc = new RTCPeerConnection(turn_config);
+				this.pc.addEventListener("icegatheringstatechange", (e) => {
+					console.log("Peer state => ", pc.iceGatheringState);
+				});
 
 				// Sending the answerer's ICE candidates to the offerer
 				const icesref = doc(firestore, "answer", "ices");
