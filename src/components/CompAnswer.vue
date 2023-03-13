@@ -42,7 +42,7 @@ git branch -M main
 				};
 				this.pc = new RTCPeerConnection(turn_config);
 				this.pc.addEventListener("icegatheringstatechange", () => {
-					console.log("Peer state => ", pc.iceGatheringState);
+					console.log("Peer state => ", this.pc.iceGatheringState);
 				});
 
 				// Sending the answerer's ICE candidates to the offerer
