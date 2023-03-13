@@ -1,4 +1,3 @@
-git branch -M main
 <template>
 	<div>
 		<button @click="answer">Answer</button>
