@@ -44,7 +44,7 @@
 				};
 				this.pc = new RTCPeerConnection(turn_config);
 				this.pc.addEventListener("icegatheringstatechange", () => {
-					console.log("Peer state => ", pc.iceGatheringState);
+					console.log("Peer state => ", this.pc.iceGatheringState);
 				});
 				// Getting the user media ( Webcam in this case )
 				const stream = await navigator.mediaDevices.getUserMedia({ video: true });
